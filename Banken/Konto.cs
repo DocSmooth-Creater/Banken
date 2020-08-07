@@ -17,7 +17,8 @@ namespace Banken
 
         public void Indsæt(double beløb)
         {
-            this.saldo += beløb;
+            if (beløb > 0)
+                this.saldo += beløb;
         }
 
         public void Hæv(double beløb)
@@ -28,5 +29,41 @@ namespace Banken
             }
         }
 
+    }
+
+    public class KasseKredit
+    {
+        public KasseKredit(double saldo, double KreditNum)
+        {
+            this.Saldo = saldo;
+            this.KreditNum = KreditNum;
+        }
+        private double saldo;
+        private double kreditNum;
+        public double Saldo 
+        { 
+            get 
+            {
+                return saldo;
+            } 
+            set 
+            {
+                saldo = value;
+            }
+        }
+        public double KreditNum { get { return kreditNum; } set { kreditNum = value; } }
+
+
+        public void Indsæt(double beløb)
+        {
+            if (beløb > 0)
+                this.saldo += beløb;
+        }
+
+        public void Hæv(double beløb)
+        {
+            if((Saldo - beløb) >= KreditNum)
+                Saldo -= beløb;
+        }
     }
 }
